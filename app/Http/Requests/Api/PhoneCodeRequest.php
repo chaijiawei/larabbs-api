@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PhoneCodeRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class PhoneCodeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,20 @@ class PhoneCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone' => [
+                'bail',
+                'required',
+                'regex:/^\d{11}$/',
+                'phone:CN,mobile',
+                Rule::unique('users'),
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone.regex' => '请输入11位的电话号码',
         ];
     }
 }

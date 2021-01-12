@@ -22,6 +22,8 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::get('version', function() {
         return 'this is version 1';
     })->name('version');
+
+    Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {
