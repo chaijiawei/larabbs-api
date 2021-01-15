@@ -14,18 +14,27 @@ class PhoneCodeController extends Controller
     {
         $data = $request->validated();
 
+
         $phone = $data['phone'];
-        $code = Str::random(4);
+        $code = str_pad(random_int(0, 9999), 4, 0, STR_PAD_LEFT);
         $key = "{$phone}_" . Str::random(10);
         $expireAt = now()->addMinutes(5);
-        Cache::put($key, $code, $expireAt);
+        if(config('app.env') === 'local') {
+            $expireAt = now()->addYear();
+        }
+        Cache::put($key, ['code' => $code, 'phone' => $phone], $expireAt);
 
         //发送手机短信
 
-        return [
+        $data = [
             'phone' => $phone,
             'key' => $key,
             'expireAt' => $expireAt->toDateTimeString(),
         ];
+        if(config('app.env') === 'local') {
+            $data['code'] = $code;
+        }
+
+        return $data;
     }
 }

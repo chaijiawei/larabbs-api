@@ -24,6 +24,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     })->name('version');
 
     Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
+    Route::resource('users', 'Api\UserController')->only('store');
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {
