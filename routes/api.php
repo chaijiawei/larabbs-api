@@ -25,6 +25,8 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
 
     Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
     Route::resource('users', 'Api\UserController')->only('store');
+
+    Route::resource('captcha', 'Api\CaptchaController')->only('store');
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {

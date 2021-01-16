@@ -25,6 +25,10 @@ class PhoneCodeRequest extends FormRequest
     public function rules()
     {
         return [
+            'captcha' => [
+                'required',
+                'captcha_api:' . $this->captcha_key . ',flat',
+            ],
             'phone' => [
                 'bail',
                 'required',
@@ -39,6 +43,7 @@ class PhoneCodeRequest extends FormRequest
     {
         return [
             'phone.regex' => '请输入11位的电话号码',
+            'captcha_api' => '验证码错误',
         ];
     }
 }

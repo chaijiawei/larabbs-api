@@ -19,7 +19,7 @@ class PhoneCodeController extends Controller
         $code = str_pad(random_int(0, 9999), 4, 0, STR_PAD_LEFT);
         $key = "{$phone}_" . Str::random(10);
         $expireAt = now()->addMinutes(5);
-        if(config('app.env') === 'local') {
+        if(app()->isLocal()) {
             $expireAt = now()->addYear();
         }
         Cache::put($key, ['code' => $code, 'phone' => $phone], $expireAt);
