@@ -27,6 +27,13 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::resource('users', 'Api\UserController')->only('store');
 
     Route::resource('captcha', 'Api\CaptchaController')->only('store');
+
+    Route::get('oauth/wechat', 'Api\WechatController@store')->name('wechat.store');
+
+    Route::post('login', 'Api\LoginController@store')->name('login.store');
+
+    Route::put('jwt_token', 'Api\JWTTokenController@update')->name('jwt_token.update');
+    Route::delete('jwt_token', 'Api\JWTTokenController@destroy')->name('jwt_token.destroy');
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {

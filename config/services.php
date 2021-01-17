@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'wechat' => [
+        'client_id' => env('WECHAT_APP_ID'),
+        'client_secret' => env('WECHAT_SECRET'),
+        'redirect' => env('WECHAT_REDIRECT_URL'),
+    ],
+
 ];
