@@ -12,7 +12,9 @@ class SyncLastLoginTime extends Command
      *
      * @var string
      */
-    protected $signature = 'larabbs:sync-last-login-time';
+    protected $signature = 'larabbs:sync-last-login-time
+                            {--now : 同步现在的数据}
+    ';
 
     /**
      * The console command description.
@@ -39,7 +41,11 @@ class SyncLastLoginTime extends Command
     public function handle()
     {
         $this->info('开始同步');
-        $successNum = (new User)->syncLastLoginTimeToDatabase();
+        $date = null;
+        if($this->option('now')) {
+            $date = now()->toDateString();
+        }
+        $successNum = (new User)->syncLastLoginTimeToDatabase($date);
         $this->info("总共同步了 $successNum 条数据");
     }
 }

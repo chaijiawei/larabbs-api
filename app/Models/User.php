@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     protected $fillable = [
         'name', 'email', 'password',
         'avatar', 'intro', 'notify_count',
-        'last_login_time', 'phone',
+        'last_login_time', 'phone', 'weixin_openid',
     ];
 
     /**
@@ -41,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      */
     protected $hidden = [
         'password', 'remember_token',
+        'phone', 'weixin_openid',
     ];
 
     /**
@@ -96,7 +97,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         if($temp = $this->getLastLoginTime()) {
             return Carbon::make($temp);
         } else if($value) {
-            return $value;
+            return Carbon::make($value);
         } else {
             return $this->created_at;
         }
@@ -110,5 +111,15 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+        if($data['last_login_time'] && $data['last_login_time'] instanceof Carbon) {
+            $data['last_login_time'] = $data['last_login_time']->format('Y-m-d H:i:s');
+        }
+
+        return $data;
     }
 }

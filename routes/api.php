@@ -14,30 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('v1')->name('api.v1.')->group(function() {
-    Route::get('version', function() {
-        return 'this is version 1';
-    })->name('version');
-
+    //注册登录
     Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
-    Route::resource('users', 'Api\UserController')->only('store');
-
     Route::resource('captcha', 'Api\CaptchaController')->only('store');
-
     Route::get('oauth/wechat', 'Api\WechatController@store')->name('wechat.store');
-
     Route::post('login', 'Api\LoginController@store')->name('login.store');
 
+    //jwt
     Route::put('jwt_token', 'Api\JWTTokenController@update')->name('jwt_token.update');
     Route::delete('jwt_token', 'Api\JWTTokenController@destroy')->name('jwt_token.destroy');
-});
 
-Route::prefix('v2')->name('api.v2.')->group(function() {
-    Route::get('version', function() {
-        return 'this is version 2';
-    })->name('version');
+    //用户信息
+    Route::resource('users', 'Api\UserController')->only('store', 'show');
+    Route::middleware('auth:api')->group(function() {
+        Route::get('user', 'Api\UserController@me')->name('user.show');
+    });
 });

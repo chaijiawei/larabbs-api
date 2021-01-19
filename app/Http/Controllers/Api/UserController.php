@@ -7,6 +7,7 @@ use App\Http\Requests\Api\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
@@ -37,6 +38,25 @@ class UserController extends Controller
             'phone' => $verifyData['phone'],
             'password' => bcrypt($data['password']),
         ]);
+
+
+        $token = Auth::guard('api')->login($user);
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
+        ])->setStatusCode(201);
+    }
+
+    public function show(User $user)
+    {
+        return new UserResource($user);
+    }
+
+    public function me(Request $request)
+    {
+        $user = $request->user();
+        $user->makeVisible(['phone', 'weixin_openid']);
 
         return new UserResource($user);
     }
