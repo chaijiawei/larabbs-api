@@ -16,4 +16,11 @@ class UserResource extends JsonResource
     {
         return parent::toArray($request);
     }
+
+    public function showSensitiveField()
+    {
+        $this->resource->makeVisible(['phone', 'weixin_openid']);
+
+        return $this;
+    }
 }

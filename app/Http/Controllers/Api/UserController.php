@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AvatarRequest;
 use App\Http\Requests\Api\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Service\ImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -56,8 +58,31 @@ class UserController extends Controller
     public function me(Request $request)
     {
         $user = $request->user();
-        $user->makeVisible(['phone', 'weixin_openid']);
 
-        return new UserResource($user);
+        return (new UserResource($user))->showSensitiveField();
+    }
+
+    public function updateAvatar(AvatarRequest $request, ImageUpload $upload)
+    {
+        $data = $request->validated();
+        $data['avatar'] = $upload->upload($data['avatar'], 'avatars', 320);
+        $user = $request->user();
+        $user->update([
+            'avatar' => $data['avatar'],
+        ]);
+
+        return response()->json([
+            'avatar' => $user->avatar,
+        ])->setStatusCode(201);
+    }
+
+    public function update(UserRequest $request)
+    {
+        $data = $request->validated();
+
+        $user = $request->user();
+        $user->update($data);
+
+        return (new UserResource($user))->showSensitiveField();
     }
 }
