@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::before(function(User $user, $ability) {
-            if($user->can('manage_contents')) {
+            if($user->hasPermissionTo('manage_contents')) {
                 return true;
             }
         });
