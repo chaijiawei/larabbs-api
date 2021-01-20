@@ -32,4 +32,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
         Route::patch('user', 'Api\UserController@update')->name('user.update');
         Route::post('user/avatar', 'Api\UserController@updateAvatar')->name('user.update.avatar');
     });
+
+    //帖子相关
+    Route::resource('cateogries', 'Api\CategoryController')->only('index');
 });

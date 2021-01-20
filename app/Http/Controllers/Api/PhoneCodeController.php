@@ -31,7 +31,7 @@ class PhoneCodeController extends Controller
             'key' => $key,
             'expireAt' => $expireAt->toDateTimeString(),
         ];
-        if(config('app.env') === 'local') {
+        if(app()->isLocal()) {
             $data['code'] = $code;
         }
 
