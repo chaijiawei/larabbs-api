@@ -36,6 +36,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     //帖子相关
     Route::resource('cateogries', 'Api\CategoryController')->only('index');
     Route::resource('topics', 'Api\TopicController')->only('show', 'index');
+    Route::get('users/{user}/topics', 'Api\TopicController@userIndex')->name('topics.user.index');
     Route::middleware('auth:api')->group(function() {
         Route::resource('topics', 'Api\TopicController')->only('store', 'update', 'destroy');
     });
