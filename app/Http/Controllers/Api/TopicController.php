@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Queries\TopicQuery;
 use App\Http\Requests\TopicsRequest;
 use App\Http\Resources\TopicResource;
 use App\Models\Topic;
@@ -41,16 +42,9 @@ class TopicController extends Controller
         return response(null, 204);
     }
 
-    public function index()
+    public function index(TopicQuery $query)
     {
-        $topics = QueryBuilder::for(Topic::class)
-            ->allowedIncludes('user', 'category')
-            ->allowedFilters([
-                'title',
-                AllowedFilter::exact('category_id'),
-                AllowedFilter::scope('with_order'),
-            ])
-            ->paginate();
+        $topics = $query->paginate();
 
         return TopicResource::collection($topics);
     }
@@ -59,15 +53,15 @@ class TopicController extends Controller
     {
         $query = $user->topics();
 
-        $topics = QueryBuilder::for($query)
-            ->allowedIncludes('user', 'category')
-            ->allowedFilters([
-                'title',
-                AllowedFilter::exact('category_id'),
-                AllowedFilter::scope('with_order'),
-            ])
-            ->paginate();
+        $topics = (new TopicQuery($query))->paginate();
 
         return TopicResource::collection($topics);
+    }
+
+    public function show($topicId, TopicQuery $query)
+    {
+        $topic = $query->findOrFail($topicId);
+
+        return new TopicResource($topic);
     }
 }
