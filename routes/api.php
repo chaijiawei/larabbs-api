@@ -37,6 +37,6 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::resource('cateogries', 'Api\CategoryController')->only('index');
     Route::resource('topics', 'Api\TopicController')->only('show', 'index');
     Route::middleware('auth:api')->group(function() {
-        Route::resource('topics', 'Api\TopicController')->only('store', 'update');
+        Route::resource('topics', 'Api\TopicController')->only('store', 'update', 'destroy');
     });
 });
