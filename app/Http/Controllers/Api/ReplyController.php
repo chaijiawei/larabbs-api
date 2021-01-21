@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
-    public function store(ReplyRequest $request, Reply $reply)
+    public function store(ReplyRequest $request)
     {
         $data = $request->validated();
 
         $reply = $request->user()->replies()->create($data);
 
-        return new ReplyResource($reply);
+        return new ReplyResource($reply->attributesToArray());
     }
 
     public function destroy(Reply $reply)

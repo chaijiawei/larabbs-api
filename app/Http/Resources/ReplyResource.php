@@ -14,8 +14,11 @@ class ReplyResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data = $this->resource->attributesToArray();
+        if(is_array($this->resource)) {
+            return $this->resource;
+        }
 
+        $data = $this->resource->attributesToArray();
         $data['user'] = new UserResource($this->whenLoaded('user'));
         $data['topic'] = new TopicResource($this->whenLoaded('topic'));
 
