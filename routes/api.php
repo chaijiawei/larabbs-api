@@ -45,5 +45,10 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::resource('replies', 'Api\ReplyController')->only('index');
     Route::middleware('auth:api')->group(function() {
         Route::resource('replies', 'Api\ReplyController')->only('store', 'destroy');
+
+        //回复消息通知
+        Route::get('notifications', 'Api\NotificationController@show')->name('notification.show');
+        Route::get('notifications/stats', 'Api\NotificationController@stats')->name('notification.stats');
+        Route::patch('notifications/mark_read', 'Api\NotificationController@markRead')->name('notification.mark_read');
     });
 });
