@@ -14,7 +14,7 @@ class TopicResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data = parent::toArray($request);
+        $data = $this->resource->attributesToArray();
         $data['user'] = new UserResource($this->whenLoaded('user'));
         $data['category'] = new CategoryResource($this->whenLoaded('category'));
 
