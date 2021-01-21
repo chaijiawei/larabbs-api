@@ -40,4 +40,9 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::middleware('auth:api')->group(function() {
         Route::resource('topics', 'Api\TopicController')->only('store', 'update', 'destroy');
     });
+
+    //帖子回复
+    Route::middleware('auth:api')->group(function() {
+        Route::resource('replies', 'Api\ReplyController')->only('store');
+    });
 });
