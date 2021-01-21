@@ -42,6 +42,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     });
 
     //帖子回复
+    Route::resource('replies', 'Api\ReplyController')->only('index');
     Route::middleware('auth:api')->group(function() {
         Route::resource('replies', 'Api\ReplyController')->only('store', 'destroy');
     });

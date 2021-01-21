@@ -2,7 +2,6 @@
 namespace App\Http\Queries;
 
 use App\Models\Topic;
-use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
