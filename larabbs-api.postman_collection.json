@@ -1,0 +1,1082 @@
+{
+	"info": {
+		"_postman_id": "c72b953a-efa8-4f42-ad11-62bd880a42c1",
+		"name": "larabbs-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "话题",
+			"item": [
+				{
+					"name": "话题详情",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/topics/:topic?include=&filter[title]=&filter[category_id]=&filter[with_order]=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"topics",
+								":topic"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": ""
+								},
+								{
+									"key": "filter[title]",
+									"value": ""
+								},
+								{
+									"key": "filter[category_id]",
+									"value": ""
+								},
+								{
+									"key": "filter[with_order]",
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "topic",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户话题列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/users/:user/topics?include=category&filter[title]=&filter[category_id]=&filter[with_order]=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user",
+								"topics"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "category"
+								},
+								{
+									"key": "filter[title]",
+									"value": ""
+								},
+								{
+									"key": "filter[category_id]",
+									"value": ""
+								},
+								{
+									"key": "filter[with_order]",
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "话题列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/topics?include=user,category,user.roles&filter[title]=&filter[category_id]=2&filter[with_order]=recentReply",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"topics"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "user,category,user.roles"
+								},
+								{
+									"key": "filter[title]",
+									"value": ""
+								},
+								{
+									"key": "filter[category_id]",
+									"value": "2"
+								},
+								{
+									"key": "filter[with_order]",
+									"value": "recentReply"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除话题",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_3_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/topics/:topic",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"topics",
+								":topic"
+							],
+							"variable": [
+								{
+									"key": "topic",
+									"value": "1002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改话题",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_3_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "修改话题",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/topics/:topic",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"topics",
+								":topic"
+							],
+							"variable": [
+								{
+									"key": "topic",
+									"value": "1002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布话题",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "测试api",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "我是话题",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/topics",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"topics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分类列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/cateogries",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cateogries"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "注册登录",
+			"item": [
+				{
+					"name": "短信验证码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "18379005962",
+									"type": "text"
+								},
+								{
+									"key": "captcha",
+									"value": "xfdeh2",
+									"type": "text"
+								},
+								{
+									"key": "captcha_key",
+									"value": "eyJpdiI6Ik9FR2IrNEFLMVVWWWdNR1ZGdlRCWFE9PSIsInZhbHVlIjoiTlJlN2JFZkFSZGl6N2ZhWllab0xmV3Z5bk9pSkZycGl2VFVJRVVvOVllcC9HYnVnQ3Iya203L1RFTHZzNVhnajB0NWM0ZERWL2tnR2tydW1vVXo2SDRLQS9jTzVjRWlsYWwrMTdieDR0Nmc9IiwibWFjIjoiMWZmZmQ1MDI1MTdkNjE3ZjMxZGQ0MDA4Y2QzMTgxM2Y3YzBhNDc4Y2VlODVkOTE2MTZjODQxYzUxMmE3OWVlNyJ9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/phone_code",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"phone_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户注册",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "cjw233",
+									"type": "text"
+								},
+								{
+									"key": "verify_key",
+									"value": "18379005963_mQDkZ6vami",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "1230",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "图片验证码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/captcha",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"captcha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信获取access_token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxc9452dac7802dacd&secret=ec1152112a95ef87d96089357811ef34&code=011fMaHa1jT4mA0gtKHa1ub7vQ3fMaHI&grant_type=authorization_code",
+							"protocol": "https",
+							"host": [
+								"api",
+								"weixin",
+								"qq",
+								"com"
+							],
+							"path": [
+								"sns",
+								"oauth2",
+								"access_token"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "wxc9452dac7802dacd"
+								},
+								{
+									"key": "secret",
+									"value": "ec1152112a95ef87d96089357811ef34"
+								},
+								{
+									"key": "code",
+									"value": "011fMaHa1jT4mA0gtKHa1ub7vQ3fMaHI"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信获取个人信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.weixin.qq.com/sns/userinfo?access_token=41_G6VS2-ivfVm25VPlPvT7Y5XFg13xvcHndI91ysMrzkaCrvokzR4QNFTCfo3CBSxD8HzkFmgxPjpWMVmhSqfIEA&openid=opY2354lxkPFqHYzHsBqvAJflP6Y&lang=zh_CN",
+							"protocol": "https",
+							"host": [
+								"api",
+								"weixin",
+								"qq",
+								"com"
+							],
+							"path": [
+								"sns",
+								"userinfo"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "41_G6VS2-ivfVm25VPlPvT7Y5XFg13xvcHndI91ysMrzkaCrvokzR4QNFTCfo3CBSxD8HzkFmgxPjpWMVmhSqfIEA"
+								},
+								{
+									"key": "openid",
+									"value": "opY2354lxkPFqHYzHsBqvAJflP6Y"
+								},
+								{
+									"key": "lang",
+									"value": "zh_CN"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信登录",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/oauth/wechat?code=0913O4Ga1PAWlA09NuFa1O2NAP13O4G9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"oauth",
+								"wechat"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "0913O4Ga1PAWlA09NuFa1O2NAP13O4G9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "jiawei_chai@126.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新jwt_token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/jwt_token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jwt_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除jwt_token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/jwt_token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jwt_token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户",
+			"item": [
+				{
+					"name": "获取用户数据",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/users/:user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user"
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取登录用户信息",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更换头像",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/Users/chaijiawei/Desktop/截屏2021-01-19 下午3.39.20.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/user/avatar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新用户信息",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "233",
+									"type": "text"
+								},
+								{
+									"key": "intro",
+									"value": "我是简介",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户权限列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/permissions",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用户角色列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/roles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "话题回复",
+			"item": [
+				{
+					"name": "发表回复",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_3_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "测试回复",
+									"type": "text"
+								},
+								{
+									"key": "topic_id",
+									"value": "1017",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/replies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"replies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除回复",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_3_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/replies/:reply",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"replies",
+								":reply"
+							],
+							"variable": [
+								{
+									"key": "reply",
+									"value": "1031"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "回复列表",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_3_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/replies?include=&filter[topic_id]=&filter[user_id]=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"replies"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": ""
+								},
+								{
+									"key": "filter[topic_id]",
+									"value": ""
+								},
+								{
+									"key": "filter[user_id]",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "消息通知列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/notifications",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "消息通知统计",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/notifications/stats",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notifications",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "消息通知标记为已读",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_1_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/notifications/mark_read",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notifications",
+								"mark_read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "推荐资源",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/links",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"links"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "活跃用户",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/active_users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"active_users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
