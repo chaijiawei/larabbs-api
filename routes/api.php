@@ -31,6 +31,9 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
         Route::get('user', 'Api\UserController@me')->name('user.show');
         Route::patch('user', 'Api\UserController@update')->name('user.update');
         Route::post('user/avatar', 'Api\UserController@updateAvatar')->name('user.update.avatar');
+
+        //用户权限
+        Route::resource('permissions', 'Api\PermissionController')->only('index');
     });
 
     //帖子相关
