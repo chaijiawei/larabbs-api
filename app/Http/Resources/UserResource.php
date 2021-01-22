@@ -14,7 +14,10 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->resource->attributesToArray();
+        $data = $this->resource->attributesToArray();
+        $data['roles'] = RoleResource::collection($this->whenLoaded('roles'));
+
+        return $data;
     }
 
     public function showSensitiveField()

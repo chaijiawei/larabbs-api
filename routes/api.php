@@ -34,6 +34,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
 
         //用户权限
         Route::resource('permissions', 'Api\PermissionController')->only('index');
+        Route::resource('roles', 'Api\RoleController')->only('index');
     });
 
     //帖子相关
