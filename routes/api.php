@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('v1')->name('api.v1.')->group(function() {
+Route::prefix('v1')
+    ->middleware('change-locale')
+    ->name('api.v1.')
+    ->group(function() {
     //注册登录
     Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
     Route::resource('captcha', 'Api\CaptchaController')->only('store');
