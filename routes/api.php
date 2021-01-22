@@ -55,4 +55,8 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
         Route::get('notifications/stats', 'Api\NotificationController@stats')->name('notification.stats');
         Route::patch('notifications/mark_read', 'Api\NotificationController@markRead')->name('notification.mark_read');
     });
+
+    //侧边栏资源
+    Route::resource('links', 'Api\LinkController')->only('index');
+    Route::resource('active_users', 'Api\ActiveUserController')->only('index');
 });
