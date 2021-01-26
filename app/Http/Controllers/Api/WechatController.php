@@ -23,10 +23,6 @@ class WechatController extends Controller
         }
 
         $token = Auth::guard('api')->login($user);
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
-        ])->setStatusCode(201);
+        return $this->responseWithToken($token)->setStatusCode(201);
     }
 }

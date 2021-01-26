@@ -24,10 +24,6 @@ class LoginController extends Controller
             throw new AuthenticationException('用户名或密码错误');
         }
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
-        ])->setStatusCode(201);
+        return $this->responseWithToken($token)->setStatusCode(201);
     }
 }

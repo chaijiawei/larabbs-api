@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'name', 'email', 'password',
         'avatar', 'intro', 'notify_count',
         'last_login_time', 'phone', 'weixin_openid',
+        'miniprogram_openid', 'miniprogram_session_key',
     ];
 
     /**

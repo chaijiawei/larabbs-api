@@ -21,8 +21,11 @@ Route::prefix('v1')
     //注册登录
     Route::resource('phone_code', 'Api\PhoneCodeController')->only('store');
     Route::resource('captcha', 'Api\CaptchaController')->only('store');
-    Route::get('oauth/wechat', 'Api\WechatController@store')->name('wechat.store');
+    Route::post('oauth/wechat', 'Api\WechatController@store')->name('wechat.store');
     Route::post('login', 'Api\LoginController@store')->name('login.store');
+
+    //小程序
+    Route::post('miniprogram/login', 'Api\MiniprogramController@store')->name('miniprogram.login');
 
     //jwt
     Route::put('jwt_token', 'Api\JWTTokenController@update')->name('jwt_token.update');
