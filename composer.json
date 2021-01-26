@@ -25,6 +25,7 @@
         "overtrue/laravel-pinyin": "~4.0",
         "overtrue/laravel-query-logger": "^2.1",
         "overtrue/laravel-socialite": "^2.0",
+        "overtrue/laravel-wechat": "~5.0",
         "propaganistas/laravel-phone": "^4.2",
         "spatie/laravel-permission": "^3.18",
         "spatie/laravel-query-builder": "^3.3",
