@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MiniprogramRequest extends FormRequest
 {
@@ -27,7 +28,18 @@ class MiniprogramRequest extends FormRequest
             'code' => [
                 'required',
                 'string',
-            ]
+            ],
+            'username' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',
+                'confirmed'
+            ],
         ];
     }
 }
