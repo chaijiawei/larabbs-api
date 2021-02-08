@@ -123,4 +123,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 
         return $data;
     }
+
+    public function getNameAttribute($value)
+    {
+        if(! $value) {
+            $value = $this->phone ?: $this->email;
+        }
+
+        return $value;
+    }
 }
