@@ -38,7 +38,6 @@ class MiniprogramRequest extends FormRequest
                 'nullable',
                 'string',
                 'min:8',
-                'confirmed'
             ],
         ];
     }

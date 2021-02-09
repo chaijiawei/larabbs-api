@@ -22,7 +22,7 @@ class UserResource extends JsonResource
 
     public function showSensitiveField()
     {
-        $this->resource->makeVisible(['phone', 'weixin_openid']);
+        $this->resource->makeVisible(['phone', 'weixin_openid', 'miniprogram_openid', 'miniprogram_session_key']);
 
         return $this;
     }
