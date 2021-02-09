@@ -46,6 +46,44 @@ class UserController extends Controller
         return $this->responseWithToken($token)->setStatusCode(201);
     }
 
+    public function miniprogramStore(UserRequest $request)
+    {
+        $data = $request->validated();
+        $verifyData = Cache::get($data['verify_key']);
+        $code = $verifyData['code'];
+        if(! $code) {
+            abort(403, '验证码已经失效');
+        }
+        if(! hash_equals($code, $data['phone_code'])) {
+            abort(401, '验证码错误');
+        }
+
+        // 获取微信的 openid 和 session_key
+        $miniProgram = \EasyWeChat::miniProgram();
+        $miniProgramData = $miniProgram->auth->session($request->code);
+        if(isset($miniProgramData['errcode'])) {
+            abort(401, 'code 不正确');
+        }
+
+        if($user = User::query()
+            ->where('miniprogram_openid', $miniProgramData['openid'])
+            ->first()
+        ) {
+            abort(401, '微信已绑定其他用户，请直接登录');
+        }
+
+        $user = User::query()->create([
+            'name' => $data['name'],
+            'phone' => $verifyData['phone'],
+            'password' => bcrypt($data['password']),
+            'miniprogram_openid' => $miniProgramData['openid'],
+            'miniprogram_session_key' => $miniProgramData['session_key'],
+        ]);
+
+        $token = Auth::guard('api')->login($user);
+        return $this->responseWithToken($token)->setStatusCode(201);
+    }
+
     public function show(User $user)
     {
         return new UserResource($user);

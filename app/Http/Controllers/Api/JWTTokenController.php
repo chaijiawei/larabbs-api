@@ -17,7 +17,9 @@ class JWTTokenController extends Controller
 
     public function destroy()
     {
-        Auth::guard('api')->logout();
+        if(Auth::guard('api')->check()) {
+            Auth::guard('api')->logout();
+        }
         return response(null, 204);
     }
 }

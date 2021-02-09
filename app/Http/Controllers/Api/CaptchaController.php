@@ -16,6 +16,7 @@ class CaptchaController extends Controller
             $captcha = implode(Cache::get('captcha_record_' . $data['key']));
             $data = array_merge(['captcha' => $captcha], $data);
         }
+        $data['expired_at']  = now()->addSeconds(config('captcha.flat.expire'))->toDateTimeString();
 
         return $data;
     }

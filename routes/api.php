@@ -26,6 +26,7 @@ Route::prefix('v1')
 
     //小程序
     Route::post('miniprogram/login', 'Api\MiniprogramController@store')->name('miniprogram.login');
+    Route::post('miniprogram/users', 'Api\UserController@miniprogramStore')->name('miniprogram.users.store');
 
     //jwt
     Route::put('jwt_token', 'Api\JWTTokenController@update')->name('jwt_token.update');

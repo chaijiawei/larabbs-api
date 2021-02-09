@@ -29,7 +29,7 @@ class PhoneCodeController extends Controller
         $data = [
             'phone' => $phone,
             'key' => $key,
-            'expireAt' => $expireAt->toDateTimeString(),
+            'expired_at' => $expireAt->toDateTimeString(),
         ];
         if(app()->isLocal()) {
             $data['code'] = $code;
