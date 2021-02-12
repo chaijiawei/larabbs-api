@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
                 ];
                 break;
             case 'PATCH':
+            case 'PUT':
                 $rules = [
                     'name' => ['required', 'string', 'max:255',
                         Rule::unique('users')->ignore($this->user()),

@@ -36,7 +36,7 @@ Route::prefix('v1')
     Route::resource('users', 'Api\UserController')->only('store', 'show');
     Route::middleware('auth:api')->group(function() {
         Route::get('user', 'Api\UserController@me')->name('user.show');
-        Route::patch('user', 'Api\UserController@update')->name('user.update');
+        Route::match(['patch', 'put'],'user', 'Api\UserController@update')->name('user.update');
         Route::post('user/avatar', 'Api\UserController@updateAvatar')->name('user.update.avatar');
 
         //用户权限
