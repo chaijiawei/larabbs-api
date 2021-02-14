@@ -103,7 +103,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/topics?include=user,category,user.roles&filter[title]=&filter[category_id]=2&filter[with_order]=recentReply",
+							"raw": "{{host}}/api/v1/topics?include=user,category,user.roles",
 							"host": [
 								"{{host}}"
 							],
@@ -119,15 +119,18 @@
 								},
 								{
 									"key": "filter[title]",
-									"value": ""
+									"value": "aa",
+									"disabled": true
 								},
 								{
 									"key": "filter[category_id]",
-									"value": "2"
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "filter[with_order]",
-									"value": "recentReply"
+									"value": "recentReply",
+									"disabled": true
 								}
 							]
 						}
@@ -314,12 +317,12 @@
 								},
 								{
 									"key": "captcha",
-									"value": "xfdeh2",
+									"value": "x9yhfr",
 									"type": "text"
 								},
 								{
 									"key": "captcha_key",
-									"value": "eyJpdiI6Ik9FR2IrNEFLMVVWWWdNR1ZGdlRCWFE9PSIsInZhbHVlIjoiTlJlN2JFZkFSZGl6N2ZhWllab0xmV3Z5bk9pSkZycGl2VFVJRVVvOVllcC9HYnVnQ3Iya203L1RFTHZzNVhnajB0NWM0ZERWL2tnR2tydW1vVXo2SDRLQS9jTzVjRWlsYWwrMTdieDR0Nmc9IiwibWFjIjoiMWZmZmQ1MDI1MTdkNjE3ZjMxZGQ0MDA4Y2QzMTgxM2Y3YzBhNDc4Y2VlODVkOTE2MTZjODQxYzUxMmE3OWVlNyJ9",
+									"value": "eyJpdiI6InBpKzJNaUhreGQ5aHNESlUvSjRaMXc9PSIsInZhbHVlIjoiajh0Umc3T0g5SS9LallYN3VRUFFtN1pQOEpvYWRPcFhyNHRHMGphN0UzdXJ1Z2VXSm0wUHJwTXFkWCtXYkY2a2xZVFNvMEhtcy9jS3hiREZiUlFlZjR0UDFtcGZyQ3B6b1MwaFNNOUErSEE9IiwibWFjIjoiNGU5ZDdkYzRkNDkyMzI3NmRhMDJmYTVlNTI2N2YzNTAzOWE1YTRkNDY2YjMxMTU4ZmI5NjNmNmQyNzJmYmQwNiJ9",
 									"type": "text"
 								}
 							]
@@ -369,6 +372,61 @@
 								{
 									"key": "password_confirmation",
 									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信小程序用户注册",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "cjw233",
+									"type": "text"
+								},
+								{
+									"key": "verify_key",
+									"value": "18379005963_mQDkZ6vami",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "1230",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "",
+									"description": "小程序登录码",
 									"type": "text"
 								}
 							]
@@ -485,18 +543,21 @@
 				},
 				{
 					"name": "微信登录",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "code",
+									"value": "081FRm100se43L1fvL100SOz0T1FRm1w",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/oauth/wechat?code=0913O4Ga1PAWlA09NuFa1O2NAP13O4G9",
+							"raw": "{{host}}/api/v1/oauth/wechat",
 							"host": [
 								"{{host}}"
 							],
@@ -505,12 +566,6 @@
 								"v1",
 								"oauth",
 								"wechat"
-							],
-							"query": [
-								{
-									"key": "code",
-									"value": "0913O4Ga1PAWlA09NuFa1O2NAP13O4G9"
-								}
 							]
 						}
 					},
@@ -520,18 +575,24 @@
 					"name": "用户登录",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
 									"key": "username",
-									"value": "jiawei_chai@126.com",
+									"value": "",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password",
+									"value": "",
 									"type": "text"
 								}
 							]
@@ -603,6 +664,36 @@
 								"api",
 								"v1",
 								"jwt_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信小程序登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "093jhZZv3KBFJV23Gk2w3LuJnA0jhZZo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/miniprogram/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"miniprogram",
+								"login"
 							]
 						}
 					},
@@ -716,7 +807,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{user_1_token}}",
+									"value": "{{user_2_token}}",
 									"type": "string"
 								}
 							]
