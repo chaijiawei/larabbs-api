@@ -45,7 +45,7 @@ Route::prefix('v1')
     });
 
     //帖子相关
-    Route::resource('cateogries', 'Api\CategoryController')->only('index');
+    Route::resource('categories', 'Api\CategoryController')->only('index');
     Route::resource('topics', 'Api\TopicController')->only('show', 'index');
     Route::get('users/{user}/topics', 'Api\TopicController@userIndex')->name('topics.user.index');
     Route::middleware('auth:api')->group(function() {
