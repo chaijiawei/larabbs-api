@@ -80,8 +80,7 @@ class UserController extends Controller
             'miniprogram_session_key' => $miniProgramData['session_key'],
         ]);
 
-        $token = Auth::guard('api')->login($user);
-        return $this->responseWithToken($token)->setStatusCode(201);
+        return new UserResource($user);
     }
 
     public function show(User $user)
