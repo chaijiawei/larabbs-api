@@ -60,7 +60,7 @@ Route::prefix('v1')
         //回复消息通知
         Route::get('notifications', 'Api\NotificationController@show')->name('notification.show');
         Route::get('notifications/stats', 'Api\NotificationController@stats')->name('notification.stats');
-        Route::patch('notifications/mark_read', 'Api\NotificationController@markRead')->name('notification.mark_read');
+        Route::match(['patch', 'put'],'notifications/mark_read', 'Api\NotificationController@markRead')->name('notification.mark_read');
     });
 
     //侧边栏资源
