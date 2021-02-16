@@ -74,7 +74,7 @@ class Topic extends Model
 
     public function topReplies()
     {
-        return $this->replies()->limit(5);
+        return $this->replies()->latest()->limit(5);
     }
 
     public function updateReplyCount()

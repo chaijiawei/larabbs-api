@@ -30,7 +30,7 @@ class ReplyController extends Controller
 
     public function index(ReplyQuery $query)
     {
-        $replies = $query->paginate();
+        $replies = $query->latest()->paginate();
 
         return ReplyResource::collection($replies);
     }
