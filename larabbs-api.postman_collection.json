@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/topics/:topic?include=&filter[title]=&filter[category_id]=&filter[with_order]=",
+							"raw": "{{host}}/api/v1/topics/:topic?include=user.roles, topReplies.user&filter[title]=&filter[category_id]=&filter[with_order]=",
 							"host": [
 								"{{host}}"
 							],
@@ -27,7 +27,7 @@
 							"query": [
 								{
 									"key": "include",
-									"value": ""
+									"value": "user.roles, topReplies.user"
 								},
 								{
 									"key": "filter[title]",
@@ -45,7 +45,7 @@
 							"variable": [
 								{
 									"key": "topic",
-									"value": ""
+									"value": "1"
 								}
 							]
 						}
@@ -103,7 +103,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/topics?include=user,category,user.roles",
+							"raw": "{{host}}/api/v1/topics?include=user,category,user.roles&filter[with_order]=recentReply",
 							"host": [
 								"{{host}}"
 							],
@@ -129,8 +129,7 @@
 								},
 								{
 									"key": "filter[with_order]",
-									"value": "recentReply",
-									"disabled": true
+									"value": "recentReply"
 								}
 							]
 						}
@@ -284,14 +283,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/cateogries",
+							"raw": "{{host}}/api/v1/categories",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"cateogries"
+								"categories"
 							]
 						}
 					},
@@ -931,7 +930,7 @@
 								},
 								{
 									"key": "topic_id",
-									"value": "1017",
+									"value": "948",
 									"type": "text"
 								}
 							]
@@ -1112,7 +1111,7 @@
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/notifications/mark_read",
